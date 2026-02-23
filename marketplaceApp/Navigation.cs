@@ -25,7 +25,7 @@ namespace marketplaceApp
         private void CreateNavigation()
         {
             this.Text = "Маркетплейс Хозтоваров";
-            this.Size = new Size(400, 350);
+            this.Width = 400;
             this.StartPosition = FormStartPosition.CenterScreen;
 
             // Заголовок
@@ -40,7 +40,20 @@ namespace marketplaceApp
             };
 
             // Кнопки навигации
-            string[] buttons = { "🛍️ Каталог товаров", "🛒 Корзина", "👤 Мой профиль", "🚪 Выход" };
+            List<string> buttons = new List<string>
+            {
+                "🛍️ Каталог товаров",
+                "🛒 Корзина",
+                "👤 Мой профиль"
+            };
+
+            // Кнопка админ-панели только для Admin
+            if (UserSession.CurrentUserRole == "Admin")
+            {
+                buttons.Add("⚙ Панель администратора");
+            }
+
+            buttons.Add("🚪 Выход");
             int y = 100;
 
             foreach (string btnText in buttons)
@@ -62,6 +75,7 @@ namespace marketplaceApp
                 this.Controls.Add(btn);
                 y += 60;
             }
+            this.Height = y + 60;
 
             this.Controls.Add(title);
         }
@@ -81,6 +95,9 @@ namespace marketplaceApp
                     break;
                 case "👤 Мой профиль":
                     formToOpen = new ProfileForm();
+                    break;
+                case "⚙ Панель администратора":
+                    formToOpen = new AdminForm();
                     break;
                 case "🚪 Выход":
                     formToOpen = null;

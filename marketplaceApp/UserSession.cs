@@ -11,5 +11,6 @@ namespace marketplaceApp
         public static int CurrentUserID { get; set; }
         public static string CurrentUserName { get; set; }
         public static string CurrentUserEmail { get; set; }
+        public static string CurrentUserRole { get; set; }
     }
 }

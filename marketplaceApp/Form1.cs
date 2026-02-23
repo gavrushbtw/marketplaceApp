@@ -45,7 +45,8 @@ namespace marketplaceApp
                 using (SqlConnection connection = db.GetConnection())
                 {
                     connection.Open();
-                    string query = "SELECT ID_пользователя, ФИО FROM Пользователи WHERE ЭлектроннаяПочта = @Email AND Пароль = @Password";
+
+                    string query = "SELECT ID_пользователя, ФИО, Роль FROM Пользователи WHERE ЭлектроннаяПочта = @Email AND Пароль = @Password";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -56,14 +57,11 @@ namespace marketplaceApp
                         {
                             if (reader.Read())
                             {
-                                int userId = reader.GetInt32(0);
-                                string userName = reader.GetString(1);
+                                UserSession.CurrentUserID = reader.GetInt32(0);
+                                UserSession.CurrentUserName = reader.GetString(1);
+                                UserSession.CurrentUserRole = reader.GetString(2);
 
-                                MessageBox.Show($"Добро пожаловать, {userName}!");
-
-                                // Сохраняем ID пользователя для использования в других формах
-                                UserSession.CurrentUserID = userId;
-                                UserSession.CurrentUserName = userName;
+                                MessageBox.Show($"Добро пожаловать, {UserSession.CurrentUserName}! Роль: {UserSession.CurrentUserRole}");
 
                                 Navigation mainForm = new Navigation();
                                 mainForm.Show();
