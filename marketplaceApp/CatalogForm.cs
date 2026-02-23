@@ -197,6 +197,7 @@ public partial class CatalogForm : Form
             }
 
             MessageBox.Show("Товар добавлен в корзину!");
+            Logger.Log($"Пользователь {UserSession.CurrentUserName} добавил товар ID={productId} в корзину");
         }
         catch (Exception ex)
         {

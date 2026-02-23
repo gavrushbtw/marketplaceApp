@@ -62,6 +62,7 @@ namespace marketplaceApp
                                 UserSession.CurrentUserRole = reader.GetString(2);
 
                                 MessageBox.Show($"Добро пожаловать, {UserSession.CurrentUserName}! Роль: {UserSession.CurrentUserRole}");
+                                Logger.Log($"Успешный вход: {UserSession.CurrentUserName}, Роль: {UserSession.CurrentUserRole}");
 
                                 Navigation mainForm = new Navigation();
                                 mainForm.Show();
@@ -70,6 +71,7 @@ namespace marketplaceApp
                             else
                             {
                                 MessageBox.Show("Неверный email или пароль");
+                                Logger.Log($"Неудачная попытка входа: {email}");
                             }
                         }
                     }

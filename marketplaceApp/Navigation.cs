@@ -100,6 +100,7 @@ namespace marketplaceApp
                     formToOpen = new AdminForm();
                     break;
                 case "🚪 Выход":
+                    Logger.Log($"Выход из системы: {UserSession.CurrentUserName}");
                     formToOpen = null;
                     break;
             }

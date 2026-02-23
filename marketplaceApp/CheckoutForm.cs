@@ -94,6 +94,7 @@ namespace marketplaceApp
 
             confirmBtn.Click += (s, e) =>
             {
+                Logger.Log($"Пользователь {UserSession.CurrentUserName} оформил заказ");
                 MessageBox.Show("Заказ успешно оформлен!", "Успех",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();

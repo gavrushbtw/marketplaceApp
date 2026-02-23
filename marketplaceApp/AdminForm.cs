@@ -16,6 +16,15 @@ namespace marketplaceApp
         {
             InitializeComponent();
             CenterToScreen();
+            if (UserSession.CurrentUserRole != "Admin")
+            {
+                Logger.Log($"Попытка несанкционированного доступа к AdminForm пользователем {UserSession.CurrentUserName}");
+                MessageBox.Show("Доступ запрещён!");
+                this.Close();
+                return;
+            }
+
+            this.Text = "Панель администратора";
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
