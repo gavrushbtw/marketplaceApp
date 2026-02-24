@@ -64,6 +64,7 @@ namespace marketplaceApp
                     }
                     : new TextBox()
                     {
+                        Name = field.Label == "Адрес доставки:" ? "txtAddress" : "",
                         Location = new Point(180, y),
                         Size = new Size(250, field.Type == "textarea" ? 60 : 25),
                         Multiline = field.Type == "textarea"
